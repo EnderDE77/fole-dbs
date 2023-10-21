@@ -1,2 +1,1 @@
-<?php 
-header("Location: ./test.php");
+<?php header("Location: ./main/home_page/indexH.php");
