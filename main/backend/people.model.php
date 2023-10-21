@@ -2,7 +2,7 @@
 
 $connection = include __DIR__ . "/connection.php";
 
-function findRoomsPerFloor($connection, $building, $floor) {
+function getRoomsPerFloor($connection, $building, $floor) {
 
     $sql = "SELECT * FROM room WHERE building = :building AND floor = :floor";
 
@@ -37,16 +37,16 @@ function findFloorsPerBuilding($connection, $building) {
     return $result[0];
 }
 
-function createRoom($connection, $type, $price, $building, $floor, $number) {
+function createRoom($connection, $type, $building, $floor, $number) {
     $dateX = date("Y/m/d");
     $card = 'Card';
     $z = 0;
 
     // Check if the payment record already exists for the given user
-    $sql = "INSERT INTO `payment` (`price`, `date`, `method`, `payingUserId`) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO room (`type`, price, building, floor, `number`) VALUES ('Free', ?, ?, ?, ?)";
 
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("dssi", $z, $dateX, $card, $user);
+    $stmt->bind_param("dsii", $price, $building, $floor, $number);
     $stmt->execute();
 
     $result = $stmt->insert_id;
@@ -55,15 +55,15 @@ function createRoom($connection, $type, $price, $building, $floor, $number) {
     return $result;
 }
 
-function createCart($connection, $user, $payment){
+function addStudent($connection, $student, $room){
 
-    $sql = "INSERT INTO `cart` (cartPaymentId, cartHolderId) VALUE (?, ?);";
+    $sql = "UPDATE student(roomid) INTO (:room) WHERE id = :id;";
     
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("ii", $payment, $user);
+    $stmt->bindParam(":room", $room);
+    $stmt->bindParam(":id", $student);
     $stmt->execute();
 
-    $result = $connection->insert_id;
 
     return $result;
 }
@@ -77,7 +77,7 @@ function setProductToCart($connection, $product, $quantity, $cart){
     $stmt->execute();
 }
 
-function getUser($connection, $id){
+function getUser($connection){
     $sql = "SELECT * FROM `user` WHERE id = $id;";
 
     $statement = $connection->prepare($sql);
