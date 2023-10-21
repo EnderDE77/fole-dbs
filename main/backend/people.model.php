@@ -20,9 +20,9 @@ function getRoomsPerFloor($connection, $building, $floor) {
     return $result;
 }
 
-function findFloorsPerBuilding($connection, $building) {
+function getFloorsPerBuilding($connection, $building) {
 
-    $sql = "SELECT COUNT(DISTINCT(floor)) FROM room WHERE building = :building;";
+    $sql = "SELECT DISTINCT(floor) FROM room WHERE building = :building;";
 
     $statement = $connection->prepare($sql);
     $statement->bindParam(':building', $building);
@@ -34,7 +34,7 @@ function findFloorsPerBuilding($connection, $building) {
     
     $result = $statement->fetchAll();
     $statement->closeCursor();
-    return $result[0];
+    return $result  ;
 }
 
 function createRoom($connection, $type, $building, $floor, $number) {
@@ -49,23 +49,19 @@ function createRoom($connection, $type, $building, $floor, $number) {
     $stmt->bind_param("dsii", $price, $building, $floor, $number);
     $stmt->execute();
 
-    $result = $stmt->insert_id;
     $stmt->close();
 
-    return $result;
 }
 
-function addStudent($connection, $student, $room){
+function addStudentToRoom($connection, $student, $room){
 
-    $sql = "UPDATE student(roomid) INTO (:room) WHERE id = :id;";
+    $sql = "UPDATE student(roomid) SET roomId = (:room) WHERE id = :id;";
     
     $stmt = $connection->prepare($sql);
     $stmt->bindParam(":room", $room);
     $stmt->bindParam(":id", $student);
     $stmt->execute();
 
-
-    return $result;
 }
 
 function setProductToCart($connection, $product, $quantity, $cart){
@@ -149,48 +145,4 @@ function lowerProductQuantity($connection, $product, $quantity){
     }
     $statement->closeCursor();
     
-}
-
-function modifyPaymentPrice($connection, $payment, $product, $quantity){
-
-    $prod = getProduct($connection, $product)[0]['price'];
-
-    $sql = "UPDATE `payment` SET `price` = price + ($quantity * $prod) WHERE `id` = $payment";
-
-    $statement = $connection->prepare($sql);
-    try {
-        $statement->execute();
-    } catch (PDOException $error) {
-        throw $error;
-    }
-    $statement->closeCursor();
-    
-}
-
-function getQuantity($connection, $product){
-    return getProduct($connection, $product)[0]['quantity'];
-}
-
-function getNoChosenProducts($connection, $cart){
-    $sql = "SELECT SUM(`quantity`) FROM `cartcontains` WHERE `cartID` = $cart";
-
-    $statement = $connection->prepare($sql);
-    try {
-        $statement->execute();
-    } catch (PDOException $error) {
-        throw $error;
-    }
-    $result = $statement -> fetchAll();
-    $statement->closeCursor();
-    return $result;
-}
-
-function insertContact($connection, $name, $email, $message){
-
-    $sql = "INSERT INTO `contact` (name, email, message, isRead) VALUES (?, ?, ?, false);";
-
-    $stmt = $connection->prepare($sql);
-    $stmt->bind_param("sss", $name, $email, $message);
-    $stmt->execute();
-
 }

@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "./floor.controller.php";
 ?>
 <!DOCTYPE html>
@@ -10,8 +9,11 @@ require_once "./floor.controller.php";
     <title>Floor</title>
 </head>
 <body>
-    <?php foreach($floorList as $room): ?>
-    <button><?= $room['number'] ?></button>
+    <?php foreach($floorList as $floor): ?>
+        <form method="GET" action="test.php">
+            <input readonly hidden name="building" value=<?= $building?>>
+            <input type="submit" name="floor" value=<?= $floor[0]?>>
+        </form>
     <?php endforeach; ?>
 </body>
 </html>

@@ -4,10 +4,10 @@ require_once "../backend/people.model.php";
 
 $floorList = [];
 $building = 'A';
-$floor = '1';
+//$building = $_GET['building'];
 
 try{
-    $floorList = getRoomsPerFloor($connection, $building, $floor);
+    $floorList = getFloorsPerBuilding($connection, $building);
 }
 catch(PDOException $error){
     echo($error);
