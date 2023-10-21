@@ -38,8 +38,8 @@ function getFloorsPerBuilding($connection, $building) {
 }
 
 function createRoom($connection, $type, $building, $floor, $number) {
-    
-    $sql = "INSERT INTO room (`type`, price, building, floor, `number`) VALUES ('Free', ?, ?, ?, ?)";
+
+    $sql = "INSERT INTO room (`type`, price, building, floor, `number`) VALUES ('Available', ?, ?, ?, ?)";
 
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("dsii", $price, $building, $floor, $number);
