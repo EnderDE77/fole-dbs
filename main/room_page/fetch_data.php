@@ -1,9 +1,8 @@
 <?php
 
-$building = 'A';
-$floor = 3; 
-// $_GET['building'];
-// $_GET['floor'];
+$building = $_GET['building'];
+$floor = $_GET['floor'];
+
 require_once '../backend/people.model.php'; 
 try {
     $roomDetails = findRoomsPerFloor($connection, $building, $floor);

@@ -55,7 +55,7 @@ require_once "./floor.controller.php";
 <body>
     <div class="button-row">
     <?php foreach($floorList as $floor): ?>
-        <form method="GET" action="test.php">
+        <form method="GET" action="../room_page/fetch_data.php">
             <input readonly hidden name="building" value=<?= $building?>>
             <button class="button" type="submit" name="floor" value=<?= $floor[0]?>><span><?= $floor[0]?></span></button>
         </form>
