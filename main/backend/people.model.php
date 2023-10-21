@@ -2,13 +2,13 @@
 
 $connection = include __DIR__ . "/connection.php";
 
-function searchProducts($connection, $search) {
-    $search = "%$search%";
+function findRoomsPerFloor($connection, $building, $floor) {
 
-    $sql = "SELECT * FROM `product` WHERE name LIKE :search;";
+    $sql = "SELECT * FROM room WHERE building = :building AND floor = :floor";
 
     $statement = $connection->prepare($sql);
-    $statement->bindParam(':search', $search);
+    $statement->bindParam(':building', $building);
+    $statement->bindParam(':floor', $floor);
     try {
         $statement->execute();
     } catch (PDOException $error) {
@@ -20,11 +20,12 @@ function searchProducts($connection, $search) {
     return $result;
 }
 
-function getProduct($connection, $id) {
+function findFloorsPerBuilding($connection, $building) {
 
-    $sql = "SELECT * FROM `product` WHERE id = $id;";
+    $sql = "SELECT COUNT(DISTINCT(floor)) FROM room WHERE building = :building;";
 
     $statement = $connection->prepare($sql);
+    $statement->bindParam(':building', $building);
     try {
         $statement->execute();
     } catch (PDOException $error) {
@@ -33,10 +34,10 @@ function getProduct($connection, $id) {
     
     $result = $statement->fetchAll();
     $statement->closeCursor();
-    return $result;
+    return $result[0];
 }
 
-function createPayment($connection, $user) {
+function createRoom($connection, $type, $price, $building, $floor, $number) {
     $dateX = date("Y/m/d");
     $card = 'Card';
     $z = 0;
