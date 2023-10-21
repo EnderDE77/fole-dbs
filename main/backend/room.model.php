@@ -2,13 +2,13 @@
 
 $connection = include __DIR__ . "/connection.php";
 
-function findRoomsPerFloor($connection, $building, $floor) {
+function searchProducts($connection, $search) {
+    $search = "%$search%";
 
-    $sql = "SELECT * FROM room WHERE building = :building AND floor = :floor";
+    $sql = "SELECT * FROM `product` WHERE name LIKE :search;";
 
     $statement = $connection->prepare($sql);
-    $statement->bindParam(':building', $building);
-    $statement->bindParam(':floor', $floor);
+    $statement->bindParam(':search', $search);
     try {
         $statement->execute();
     } catch (PDOException $error) {
@@ -20,12 +20,10 @@ function findRoomsPerFloor($connection, $building, $floor) {
     return $result;
 }
 
-function findFloorsPerBuilding($connection, $building) {
-
-    $sql = "SELECT COUNT(DISTINCT(floor)) FROM room WHERE building = :building;";
+function getProducts($connection) {
+    $sql = "SELECT * FROM `product`;";
 
     $statement = $connection->prepare($sql);
-    $statement->bindParam(':building', $building);
     try {
         $statement->execute();
     } catch (PDOException $error) {
@@ -34,10 +32,26 @@ function findFloorsPerBuilding($connection, $building) {
     
     $result = $statement->fetchAll();
     $statement->closeCursor();
-    return $result[0];
+    return $result;
 }
 
-function createRoom($connection, $type, $price, $building, $floor, $number) {
+function getProduct($connection, $id) {
+
+    $sql = "SELECT * FROM `product` WHERE id = $id;";
+
+    $statement = $connection->prepare($sql);
+    try {
+        $statement->execute();
+    } catch (PDOException $error) {
+        throw $error;
+    }
+    
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+function createPayment($connection, $user) {
     $dateX = date("Y/m/d");
     $card = 'Card';
     $z = 0;
