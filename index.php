@@ -1,1 +1,1 @@
-<?php require_once ""?>
+<?php header("Location: ./home_page/indexL.php");

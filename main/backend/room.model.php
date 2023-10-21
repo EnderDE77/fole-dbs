@@ -20,6 +20,21 @@ function searchProducts($connection, $search) {
     return $result;
 }
 
+function getProducts($connection) {
+    $sql = "SELECT * FROM `product`;";
+
+    $statement = $connection->prepare($sql);
+    try {
+        $statement->execute();
+    } catch (PDOException $error) {
+        throw $error;
+    }
+    
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
 function getProduct($connection, $id) {
 
     $sql = "SELECT * FROM `product` WHERE id = $id;";
