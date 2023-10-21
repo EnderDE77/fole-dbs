@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2023 at 02:57 PM
+-- Generation Time: Oct 21, 2023 at 06:56 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` text NOT NULL,
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -54,6 +54,15 @@ CREATE TABLE `room` (
   `img` blob DEFAULT NULL,
   `contract` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `type`, `price`, `building`, `floor`, `number`, `status`, `startDate`, `endDate`, `img`, `contract`) VALUES
+(1, '1+1', 500, 'A', 1, 1, 'Free', NULL, NULL, NULL, NULL),
+(2, '1+1', 500, 'A', 1, 2, 'Free', NULL, NULL, NULL, NULL),
+(3, '1+1', 500, 'A', 2, 1, 'Free', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -108,7 +117,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student`
