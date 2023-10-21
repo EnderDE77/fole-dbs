@@ -18,3 +18,4 @@ function connect($dbname, $user, $password) {
 }
 
 return connect($dbName, $user, $password);
+
