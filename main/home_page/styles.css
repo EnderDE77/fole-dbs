@@ -60,7 +60,6 @@ main {
 
 .row {
     display: flex;
-    margin-left: -600px;
     justify-content: space-between;
     margin-right: 10px; 
     transform:  rotateZ(45deg); 
@@ -100,9 +99,8 @@ header {
 }
 
 img {
-    margin-top: -70px;
+    margin-top: -50px;
     width: 300px;
-    margin-left: -600px;
 }
 
 main {
