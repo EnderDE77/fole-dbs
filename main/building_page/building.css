@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #fff56d, #5cb2e4, #011f33);
 }
 
 header {
@@ -13,6 +15,28 @@ header {
 
 header img {
     width: 110px;
+}
+
+.header-buttons {
+    display: flex;
+  
+    align-items: center;
+    flex:1;
+}
+
+.header-buttons button {
+    padding: 8px 20px;
+    background-color: #4c9baf;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 450px;
+}
+
+.header-buttons button:hover {
+    background-color: #45a049;
 }
 
 main {

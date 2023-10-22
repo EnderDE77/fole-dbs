@@ -1,2 +1,2 @@
-<?php 
-header("Location: ./main/floor_page/indexF.php");
+<?php
+header("Location: ./main/home_page/home.html");

@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $storedHashedPassword = $row['password'];
 
         if (password_verify($password, $storedHashedPassword)) {
-            header("Location: dashboard.php");
+            header("Location: ../building_page/building.html");
         } else {
             $_SESSION['login_error_message'] = "Wrong Password";
             

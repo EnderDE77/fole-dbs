@@ -1,14 +1,3 @@
-/*
-Responsive HTML Table With Pure CSS - Web Design/UI Design
-
-Code written by:
-👨🏻‍⚕️ Coding Design (Jeet Saru)
-
-> You can do whatever you want with the code. However if you love my content, you can **SUBSCRIBED** my YouTube Channel.
-
-🌎link: www.youtube.com/codingdesign 
-*/
-
 * {
     margin: 0;
     padding: 0;
@@ -19,10 +8,8 @@ Code written by:
 
 body {
     min-height: 100vh;
-    /* background: url(images/html_table.jpg) center / cover; */
-    background:linear-gradient(to bottom right, #fff56d, #5cb2e4, #011f33);
+    background: linear-gradient(to bottom right, #fff56d, #5cb2e4, #011f33);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -245,7 +232,7 @@ thead th.active,tbody td.active {
     position: relative;
 }
 
-.export__file .export__file-btn {
+.export_file .export_file-btn {
     display: inline-block;
     width: 2rem;
     height: 2rem;
@@ -254,7 +241,7 @@ thead th.active,tbody td.active {
     transition: .2s ease-in-out;
 }
 
-.export__file .export__file-btn:hover { 
+.export_file .export_file-btn:hover { 
     background-color: #fff;
     transform: scale(1.15);
     cursor: pointer;
@@ -264,7 +251,7 @@ thead th.active,tbody td.active {
     display: none;
 }
 
-.export__file .export__file-options {
+.export_file .export_file-options {
     position: absolute;
     right: 0;
     
@@ -282,13 +269,13 @@ thead th.active,tbody td.active {
     transition: .2s;
 }
 
-.export__file input:checked + .export__file-options {
+.export_file input:checked + .export_file-options {
     opacity: 1;
     transform: scale(1);
     z-index: 100;
 }
 
-.export__file .export__file-options label{
+.export_file .export_file-options label{
     display: block;
     width: 100%;
     padding: .6rem 0;
@@ -301,77 +288,57 @@ thead th.active,tbody td.active {
     transition: .2s ease-in-out;
 }
 
-.export__file .export__file-options label:first-of-type{
+.export_file .export_file-options label:first-of-type{
     padding: 1rem 0;
     background-color: #86e49d !important;
 }
 
-.export__file .export__file-options label:hover{
+.export_file .export_file-options label:hover{
     transform: scale(1.05);
     background-color: #fff;
     cursor: pointer;
 }
 
-.export__file .export__file-options img{
+.export_file .export_file-options img{
     width: 2rem;
     height: auto;
 }
-/* Define CSS classes for text colors */
-.red-text {
-    color: red;
-}
 
-.green-text {
-    color: green;
-}
 
-.yellow-text {
-    color: rgb(204, 204, 20);
-}
 
-.light-blue-text {
-    color: lightblue;
-}
-/* Add this CSS to your style.css file */
-
-/* Style for the "Edit" button */
-button {
-    padding: 5px 10px;
-    background-color: #007bff; /* Blue background color */
-    color: #fff; /* White text color */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Style for the "Edit" button on hover */
-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-/* Add this CSS to your style.css file */
-
-/* Style for the search bar */
-.input-group {
-    display: flex;
+/* Add this CSS code to your existing style.css or in a new CSS file */
+.button-row {
+    justify-content: center;
     align-items: center;
-    max-width: 300px; /* Set a maximum width for the search bar */
-    margin: 10px; /* Add margin for spacing */
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
 }
 
-input[type="search"] {
-    flex: 1; /* Make the input take up remaining space */
+.button {
+    display: block; /* Change from inline-block to block */
+    padding: 15px;
+    width: 100%;
+    margin: 10px;
+    background:#e7dc44;
+    color: #ffffff;
     border: none;
-    outline: none;
-    padding: 5px;
-    font-size: 14px;
-    border-radius: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 20px;
+    transition: background-color 0.3s;
 }
 
-img {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px; /* Add spacing between input and image */
+.button span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    align-self: center;
+}
+
+.button:hover {
+    background-color: #d3c93b;
 }

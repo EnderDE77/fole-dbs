@@ -103,7 +103,7 @@ echo '<p>Duration: ' . $durationInMonths . ' months</p>';
         echo '<a href="edit_room.php?id=' . $row['id'] . '">Edit</a>';
         echo '<hr>';
     }
-    echo '</div';
+    echo '</div>';
 } catch (PDOException $error) {
     echo "Error: " . $error->getMessage();
 }

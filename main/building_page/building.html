@@ -20,19 +20,22 @@
 
     <header>
         <img src="FOLE/fole2.png" alt="Fole Student Residence Logo">
+        <div class="header-buttons">
+            <button onclick="window.location.href='../search_page/index.php'">Search Available</button>
+        </div>
     </header>
 
     <main>
         <div class="row">
-            <form method="GET" action="building.controller.php">
+            <form method="GET" action="../floor_page/indexF.php">
                 <input hidden readonly name="building" value="A">
                 <input class="one clickable-img" type="image" src="FOLE/yelloww.png" title="Building A">
             </form>
-            <form method="GET" action="building.controller.php">
+            <form method="GET" action="../floor_page/indexF.php">
                 <input hidden readonly name="building" value="B">
                 <input class="one clickable-img" type="image" src="FOLE/yelloww.png" title="Building B">
             </form>
-            <form method="GET" action="building.controller.php">
+            <form method="GET" action="../floor_page/indexF.php">
                 <input hidden readonly name="building" value="C">
                 <input class="one clickable-img" type="image" src="FOLE/yelloww.png" title="Building C">
             </form>

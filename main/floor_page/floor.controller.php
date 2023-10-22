@@ -3,8 +3,7 @@
 require_once "../backend/people.model.php";
 
 $floorList = [];
-$building = 'A';
-//$building = $_GET['building'];
+$building = $_GET['building'];
 
 try{
     $floorList = getFloorsPerBuilding($connection, $building);

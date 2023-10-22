@@ -77,3 +77,61 @@ function getRoomDetails($connection, $roomId) {
     return $result[0];
     
 }
+
+function getFreeRooms($connection, $date) {
+    $sql = "SELECT * FROM room WHERE status = 'Available' OR endDate < :d";
+    
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam(":d", $date);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    
+    $stmt->closeCursor();
+    return $result;
+    
+}
+
+function getStudents($connection){
+    $sql = "SELECT * FROM student";
+    
+    $stmt = $connection->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    
+    $stmt->closeCursor();
+    return $result;
+    
+}
+
+function addStudent($connection, $personalid, $name, $surname, $email, $phone){
+    $sql = "INSERT INTO student(personalno, name, surname, phoneno, email) VALUES (:num, :name, :surname, :phone, :email)";
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam(":num", $personalid);
+    $stmt->bindParam(":name", $name);
+    $stmt->bindParam(":surname", $surname);
+    $stmt->bindParam(":phone", $email);
+    $stmt->bindParam(":email", $phone);
+    $stmt->execute();
+    $stmt->closeCursor();
+}
+
+function sendStudentToRoom($connection, $student, $room){
+    $sql = "UPDATE student SET roomid = :room WHERE id = :id";
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam(":room", $room);
+    $stmt->bindParam(":id", $student);
+    $stmt->execute();
+    $stmt->closeCursor();
+}
+
+function getStudentsOfRoom($connection, $room){
+    $sql = "SELECT * FROM student WHERE roomid = :room";
+    
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam(":room", $room);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    
+    $stmt->closeCursor();
+    return $result;
+}

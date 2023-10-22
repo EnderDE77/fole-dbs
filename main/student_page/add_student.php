@@ -8,19 +8,9 @@ require_once "./student.controller.php"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Room Details</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../room_page/style.css">
     <style>
-        /* Linear gradient background for the whole page */
-        body {
-            background: linear-gradient(to bottom, #485563, #29323c);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        /* Blurry background for the form */
-        .form-container {
+    .form-container {
             backdrop-filter: blur(5px);
             background-color: rgba(255, 255, 255, 0.2);
             border: 1px solid #ccc;
@@ -32,11 +22,6 @@ require_once "./student.controller.php"
             grid-template-rows: repeat(4, 1fr); /* Four rows */
             gap: 20px; /* Gap between columns and rows */
         }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        /* Style form input fields */
         input[type="text"],
         input[type="number"],
         input[type="date"] {
@@ -47,21 +32,7 @@ require_once "./student.controller.php"
             border-radius: 4px;
             box-sizing: border-box;
         }
-        /* Style form labels */
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        /* Style buttons */
-        .btn-primary {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+        </style>
 </head>
 <body>
 <h1>Add Student</h1>
