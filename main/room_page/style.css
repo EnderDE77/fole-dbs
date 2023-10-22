@@ -22,7 +22,6 @@ body {
     /* background: url(images/html_table.jpg) center / cover; */
     background:linear-gradient(to bottom right, #fff56d, #5cb2e4, #011f33);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -221,15 +220,15 @@ thead th span.icon-arrow {
 }
 
 thead th:hover span.icon-arrow{
-    border: 1.4px solid #6c00bd;
+    border: 1.4px solid #81bbcd;
 }
 
 thead th:hover {
-    color: #6c00bd;
+    color: #81bbcd;
 }
 
 thead th.active span.icon-arrow{
-    background-color: #6c00bd;
+    background-color: #81bbcd;
     color: #fff;
 }
 
@@ -238,7 +237,7 @@ thead th.asc span.icon-arrow{
 }
 
 thead th.active,tbody td.active {
-    color: #6c00bd;
+    color: #81bbcd;
 }
 
 .export__file {
@@ -318,15 +317,15 @@ thead th.active,tbody td.active {
 }
 /* Define CSS classes for text colors */
 .red-text {
-    color: red;
+    color: rgb(182, 88, 88);
 }
 
 .green-text {
-    color: green;
+    color: rgb(78, 130, 78);
 }
 
 .yellow-text {
-    color: rgb(204, 204, 20);
+    color: rgb(196, 196, 86);
 }
 
 .light-blue-text {
@@ -337,7 +336,7 @@ thead th.active,tbody td.active {
 /* Style for the "Edit" button */
 button {
     padding: 5px 10px;
-    background-color: #007bff; /* Blue background color */
+    background-color:#81bbcd; /* Blue background color */
     color: #fff; /* White text color */
     border: none;
     border-radius: 4px;
@@ -346,7 +345,7 @@ button {
 
 /* Style for the "Edit" button on hover */
 button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #81bbcd; /* Darker blue on hover */
 }
 /* Add this CSS to your style.css file */
 
@@ -374,4 +373,10 @@ img {
     width: 20px;
     height: 20px;
     margin-left: 5px; /* Add spacing between input and image */
+}
+#aa{
+    text-decoration: none;
+}
+ a {
+    text-decoration: none;
 }
