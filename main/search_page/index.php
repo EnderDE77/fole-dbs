@@ -1,13 +1,40 @@
 <?php
 require_once "search.controller.php";
 ?>
+<style>
+        /* Style for the date input */
+        #searchDate {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        /* Style for the search button */
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue background color */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the button */
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
 <!DOCTYPE html>
 <html lang="en" title="Coding design">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Responsive HTML Table With Pure CSS - Web Design/UI Design</title>
+    <title>Search available rooms</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
