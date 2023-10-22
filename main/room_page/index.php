@@ -80,6 +80,9 @@ else if($_POST['direction'] == "Add"){
                 <input type="search" id="searchInput" placeholder="Search Room Type...">
                 <img id="searchImage" src="images/search.png" alt="Search">
             </div>
+            <div class="input-group">
+                <button onclick="window.location.href='indexR.php'" class="btn-primary">Add Room</button>
+            </div>
         </section>
         <section class="table__body">
             <table>

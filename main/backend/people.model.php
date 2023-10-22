@@ -79,7 +79,7 @@ function getRoomDetails($connection, $roomId) {
 }
 
 function getFreeRooms($connection, $date) {
-    $sql = "SELECT * FROM room WHERE status = 'Available' OR endDate < :d";
+    $sql = "SELECT * FROM room WHERE status = 'Empty' OR endDate < :d";
     
     $stmt = $connection->prepare($sql);
     $stmt->bindParam(":d", $date);
