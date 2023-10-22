@@ -165,6 +165,7 @@
     
         // Add a "Save" button to update the room.
         echo '<button type="submit">Save</button>';
+    
         echo '<button><a href="index.php">Back</a></button>';
         
         echo '</form>';

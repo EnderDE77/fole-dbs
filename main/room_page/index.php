@@ -1,68 +1,3 @@
-<?php
-require_once "../backend/people.model.php";
-
-$building = '';
-$floor = 0;
-
-if(isset($_GET['building'])){
-    $building = $_GET['building'];
-    $floor = $_GET['floor'];
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if($_POST['direction'] == "Edit"){
-    // Handle the form submission to update the room details in the database.
-    $roomId = $_POST['room_id']; // Get the room ID from the form
-    
-    // Capture the values from the form input fields
-    $type = $_POST['type'];
-    $price = $_POST['price'];
-    $building = $_POST['building'];
-    $floor = $_POST['floor'];
-    $number = $_POST['number'];
-    $status = $_POST['status'];
-    $startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
-    
-    // Call the updateRoomDetails function with the captured values
-    updateRoomDetails($connection, $roomId, $type, $price, $building, $floor, $number, $status, $startDate, $endDate);
-}
-else if($_POST['direction'] == "Add"){
-    // Retrieve and sanitize form data
-    $type = $_POST['type'];
-    $price = $_POST['price'];
-    $building = $_POST['building'];
-    $floor = $_POST['floor'];
-    $number = $_POST['number'];
-    $status = "Available";
-    $startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
-
-    // SQL query to insert data into the room table
-    $sql = "INSERT INTO room (type, price, building, floor, number, status, startDate, endDate)
-            VALUES (:type, :price, :building, :floor, :number, :status, :startDate, :endDate)";
-
-    $stmt = $connection->prepare($sql);
-    $stmt->bindParam(':type', $type);
-    $stmt->bindParam(':price', $price);
-    $stmt->bindParam(':building', $building);
-    $stmt->bindParam(':floor', $floor);
-    $stmt->bindParam(':number', $number);
-    $stmt->bindParam(':status', $status);
-    $stmt->bindParam(':startDate', $startDate);
-    $stmt->bindParam(':endDate', $endDate);
-
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) {
-        echo "Data added to the room table successfully.";
-    } else {
-        echo "Failed to add data to the room table.";
-    }
-}
-    // After updating the room, you can redirect back to the index page.
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en" title="Coding design">
 <head>
@@ -77,7 +12,7 @@ else if($_POST['direction'] == "Add"){
         <section class="table__header">
             <h1>Rooms</h1>
             <div class="input-group">
-                <input type="search" id="searchInput" placeholder="Search Room Type...">
+                <input type="search" id="searchInput" placeholder="Search Data...">
                 <img id="searchImage" src="images/search.png" alt="Search">
             </div>
         </section>
@@ -100,11 +35,14 @@ else if($_POST['direction'] == "Add"){
                 <tbody>
                     <?php
                     // Include your database connection script here.
-                    // $conn = include './backend/connection.php';
+                    $conn = include './backend/connection.php';
 
                     // SQL query to fetch data from the room table
+                    $sql = "SELECT id, type, price, building, floor, number, status, startDate, endDate FROM room";
+
                     try {
-                        $data = getRoomsPerFloor($connection, $building, $floor);
+                        $stmt = $conn->query($sql);
+                        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         foreach ($data as $row) {
                             $statusClass = '';
@@ -126,9 +64,7 @@ else if($_POST['direction'] == "Add"){
                                     break;
                             }
 
-                            echo '<tr>';
-                            echo '<tr class="clickable-row" data-href="other_file.php?id=' . $row['id'] . '">';
-
+                            echo '<tr class="clickable-row" data-href="../student_page/main.php?id=' . $row['id'] . '">';
                             echo '<td>' . $row['id'] . '</td>';
                             echo '<td>' . $row['type'] . '</td>';
                             echo '<td>' . $row['price'] . '</td>';
@@ -138,7 +74,7 @@ else if($_POST['direction'] == "Add"){
                             echo '<td class="' . $statusClass . '">' . $row['status'] . '</td>';
                             echo '<td>' . $row['startDate'] . '</td>';
                             echo '<td>' . $row['endDate'] . '</td>';
-                            echo '<td><button ><a href="edit_room.php?id=' . $row['id'] . '">Edit</a></button></td>';
+                            echo '<td><button ><a href="Edit.php?id=' . $row['id'] . '">Edit</a></button></td>';
                             echo '</tr>';
                         }
                     } catch (PDOException $error) {
@@ -151,13 +87,19 @@ else if($_POST['direction'] == "Add"){
     </main>
     
     <script>
-          var table = document.querySelector("table");
-        table.addEventListener("click", function (event) {
-            var target = event.target;
-            if (target.parentElement.classList.contains("clickable-row")) {
-                window.location.href = target.parentElement.getAttribute("data-href");
-            }
+        // JavaScript function to make rows clickable and handle redirection
+        document.addEventListener("DOMContentLoaded", function() {
+            var rows = document.querySelectorAll(".clickable-row");
+            rows.forEach(function(row) {
+                row.addEventListener("click", function() {
+                    var url = this.getAttribute("data-href");
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+            });
         });
+
         // JavaScript function to filter table rows based on search input
         document.getElementById('searchImage').addEventListener('click', function() {
             var input, filter, table, tbody, tr, td, i, txtValue;
