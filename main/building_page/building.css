@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgba(52, 201, 204, 0.8);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header img {
+    width: 110px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 90px;
+}
+
+.centered-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.centered-button button:hover {
+    background-color: rgba(52, 201, 204, 0.8);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    transform:  rotateZ(45deg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+.one{
+    display: flex;
+    position: center;
+    cursor: pointer;
+    transform: rotate(-45deg);
+    width: 230px;
+    
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling and clip overflow content */
+}
+.clickable-img {
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}

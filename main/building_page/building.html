@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="building.css">
+    <style>
+        .clickable-img {
+            cursor: pointer;
+        }
+
+        .clickable-img:hover {
+            opacity: 0.9; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="FOLE/fole2.png" alt="Fole Student Residence Logo">
+    </header>
+
+    <main>
+        <div class="row">
+            <form method="GET" action="building.controller.php">
+                <input hidden readonly name="building" value="A">
+                <input class="one clickable-img" type="image" src="FOLE/yelloww.png" title="Building A">
+            </form>
+            <form method="GET" action="building.controller.php">
+                <input hidden readonly name="building" value="B">
+                <input class="one clickable-img" type="image" src="FOLE/yelloww.png" title="Building B">
+            </form>
+            <form method="GET" action="building.controller.php">
+                <input hidden readonly name="building" value="C">
+                <input class="one clickable-img" type="image" src="FOLE/yelloww.png" title="Building C">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>
